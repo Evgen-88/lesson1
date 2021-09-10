@@ -7,7 +7,6 @@ import com.itrexgroup.konoplyanik.wordcounter.model.WordMap;
 
 public class TextService {
 	private WordMap words;
-	//private Map<String, Integer> map;
 	
 	public void inputFromConsole() {
 		BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
