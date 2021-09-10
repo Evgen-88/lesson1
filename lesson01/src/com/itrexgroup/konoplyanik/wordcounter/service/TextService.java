@@ -6,10 +6,10 @@ import com.itrexgroup.konoplyanik.wordcounter.model.WordMap;
 
 
 public class TextService {
-	private static WordMap words = new WordMap(inputFromConsole());
-	private static Map<String, Integer> map = parseText();
+	private WordMap words;
+	//private Map<String, Integer> map;
 	
-	private static String inputFromConsole() {
+	public void inputFromConsole() {
 		BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
 		System.out.println("Type text (to input text type \">\"-key in new line and press Enter): ");
 		String text = "";
@@ -23,10 +23,10 @@ public class TextService {
 		} catch(IOException e) {
 			e.printStackTrace();
 		}
-		return text;
+		words = new WordMap(text);
 	}
 	
-	private static Map<String, Integer> parseText() {
+	public void parseText() {
 		Map<String, Integer> map = new HashMap<>();
 		for(String s : words.getText().split("\\W*\\s+")) {
 			if(map.containsKey(s)) {
@@ -35,13 +35,13 @@ public class TextService {
 				map.put(s, 1);
 			}
 		}
-		return map;
+		words.setMap(map);
 	}
 	
-	public static void outputWordMap() {
+	public void outputWordMap() {
 		System.out.println("The list of unique words and their quantity: ");
 		System.out.println();
-		for(Map.Entry<String, Integer> pair : map.entrySet()) {
+		for(Map.Entry<String, Integer> pair : words.getMap().entrySet()) {
 			System.out.printf("%s - %d\n", pair.getKey(), pair.getValue());
 		}
 	}
