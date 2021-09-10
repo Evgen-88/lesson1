@@ -11,7 +11,11 @@ import com.itrexgroup.konoplyanik.wordcounter.service.TextService;
 public class WordcounterApplication {
 	
 	public static void main(String[] args) {
-		TextService.outputWordMap();
+		TextService textService = new TextService();
+		
+		textService.inputFromConsole();
+		textService.parseText();
+		textService.outputWordMap();
 	}
 	
 }
